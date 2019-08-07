@@ -1,4 +1,4 @@
-# Rails Programming assessment
+# Rails Programming Assessment
 *This assessment should take around 5 hours complete.*
 
 ## Versions
