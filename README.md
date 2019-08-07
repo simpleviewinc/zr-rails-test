@@ -93,22 +93,22 @@
         * For each page find the site, and add sites user as the user for the page
 
 10. Update the `page controller` index route
-  * It should respond to different types of requests
-    * For a JSON request it should respond with JSON
-    * For an HTML request it should respond with HTML
-  * Add a view template that displays a list of pages created by the logged in user
-    * Add a button to the `_navbar.html.erb` template that navigates to this view template
+    * It should respond to different types of requests
+      * For a JSON request it should respond with JSON
+      * For an HTML request it should respond with HTML
+    * Add a view template that displays a list of pages created by the logged in user
+      * Add a button to the `_navbar.html.erb` template that navigates to this view template
 
 11. Build out a page `index view template` for the page's `index method`
-  * Display only the pages of the logged in user
-  * The Page list should emulate the `page list` on the sites `show view template` from step 7
-    * The **ONLY** difference is that each page should include a link to it's parent site
-      * The link should navigate to the sites `show view template`
+    * Display only the pages of the logged in user
+    * The Page list should emulate the `page list` on the sites `show view template` from step 7
+      * The **ONLY** difference is that each page should include a link to it's parent site
+        * The link should navigate to the sites `show view template`
 
 12. Add a search input at the top of the `page list`
-  * The `page list` should update in real time as input is typed into the search input
-  * The search should filter by name of the page
-  * It should filter out any non-matching pages in the `page list`
+    * The `page list` should update in real time as input is typed into the search input
+    * The search should filter by name of the page
+    * It should filter out any non-matching pages in the `page list`
 
 
 ## Submit
