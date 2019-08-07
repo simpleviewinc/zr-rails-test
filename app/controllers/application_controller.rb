@@ -1,3 +1,2 @@
 class ApplicationController < ZRActionControllerBase
-
 end

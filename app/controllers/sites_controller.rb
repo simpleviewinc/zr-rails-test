@@ -22,7 +22,7 @@ class SitesController < ApplicationController
 
   def create
     @site = Site.create(site_params.merge(user_id: @ZR_USER.id))
-    flash[:alert] = "Site Error: #{@site.errors.full_messages.join(", ")}" unless @site.persisted?
+    flash[:alert] = "Site Error: #{@site.errors.full_messages.join(', ')}" unless @site.persisted?
     redirect_to root_path
   end
 
