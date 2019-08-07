@@ -43,7 +43,7 @@
         * The `List of sites` section shows **ONLY** when a user **IS** logged in
 
 4. The site index shows all sites
-    * Update is so that it **ONLY** shows the logged in user's sites
+    * Update the app so that it **ONLY** shows the logged in user's sites
 
 5. Fix the `Delete` buttons
     * This should remove the site from the displayed sites list, **WITHOUT** reloading the window
