@@ -1,0 +1,12 @@
+<div class="container">
+  <div class="pages-container">
+    <div class="row">
+      <% @pages.each do |page| %>
+        <div class="col-xs-12 col-sm-6 col-lg-4">
+          <%= render 'pages/page' %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+<%= render 'pages/new-page-button' %>

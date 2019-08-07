@@ -1,0 +1,48 @@
+<div class="sites-container container mt-5">
+  <div class="jumbotron">
+    <div class="row">
+      <% @sites.each do |site| %>
+        <div class="col-sm-12 col-md-6">
+          <div class="card-deck mb-3" >
+            <%= render 'sites/site', site: site %>
+          </div>
+        </div>
+        <br>
+      <% end %>
+    </div>
+
+    <% if @sites.length === 0 %>
+      <h1>No Sites exist!</h1>
+      <p class="lead">
+        Click the green button to create one
+      </p>
+    <% end %>
+
+    <div class="row">
+      <div class="col-sm">
+        <%= render 'sites/new-site-button' %>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+<div class="container mt-5">
+  <div class="jumbotron">
+
+    <h1>Please Login</h1>
+    <p class="lead">
+      You must be logged in to view this section!
+    </p>
+
+    <div class="row">
+      <div class="col-sm">
+        <%= render 'shared/login-button' %>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+

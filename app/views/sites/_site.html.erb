@@ -1,0 +1,54 @@
+<div class="card mb-4 shadow-sm" >
+  <div class="card-header">
+    <h4 class="my-0 font-weight-normal"><%= site.name %></h4>
+  </div>
+  <div class="card-body">
+    <p class="card-text" >
+      <label class="bold" >
+        Domain:
+      </label>
+      <br>
+      <span>
+        <%= site.domain %>
+      </span>
+    </p>
+
+    <p class="card-text" >
+      <label class="bold" >
+        Description:
+      </label>
+      <br>
+      <span class="card-text" >
+        <%= site.description %>
+      </span>
+    </p>
+
+    <p class="card-text" >
+      <label class="bold" >
+        Page Count:
+      </label>
+      <br>
+      <span class="card-text" >
+        <%= site.pages.length %>
+      </span>
+    </p>
+
+  </div>
+
+  <div class="card-footer d-flex flex-row justify-content-between">
+    <div >
+      <a class="text-danger bold pointer remove-site" data-site-id="<%= site.id %>">
+        <i class="fa fa-trash"></i>
+        Delete
+      </a>
+    </div>
+    <div class="ml-3" >
+      <%= link_to(site) do %>
+        <span class="text-success bold pointer remove-site" data-site-id="<%= site.id %>">
+          <i class="fa fa-glasses"></i>
+          View
+        </span>
+      <% end %>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,23 @@
+default: &default
+  adapter: postgresql
+  host: localhost
+  port: 5432
+  database: zr_production
+  username: postgres
+  password:
+  prepared_statements: false
+  pool: <%= ENV['RAILS_MAX_THREADS'] || 5 %>
+
+development:
+  <<: *default
+  database: zr_development
+
+test:
+  <<: *default
+  database: zr_test
+
+production:
+  <<: *default
+  database: zr_production
+  username: zr
+  password: <%= ENV['EXCHANGOGRAM_DATABASE_PASSWORD'] %>

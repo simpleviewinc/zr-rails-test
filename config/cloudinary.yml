@@ -1,0 +1,19 @@
+---
+development:
+  cloud_name: dilhxvlfw
+  api_key: '932964218619433'
+  api_secret: rJSZG_CPX-8KJ_hoHyIGR_ztLSk
+  enhance_image_tag: true
+  static_file_support: false
+production:
+  cloud_name: dilhxvlfw
+  api_key: '932964218619433'
+  api_secret: rJSZG_CPX-8KJ_hoHyIGR_ztLSk
+  enhance_image_tag: true
+  static_file_support: true
+test:
+  cloud_name: dilhxvlfw
+  api_key: '932964218619433'
+  api_secret: rJSZG_CPX-8KJ_hoHyIGR_ztLSk
+  enhance_image_tag: true
+  static_file_support: false

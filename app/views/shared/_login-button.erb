@@ -1,0 +1,9 @@
+<% if user_signed_in? %>
+  <div class="nav-item">
+    <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "btn btn-outline-danger" %>
+  </div>
+<% else %>
+  <div class="nav-item">
+    <%= link_to "Login", new_user_session_path, class: "btn btn-primary" %>
+  </div>
+<% end %>
