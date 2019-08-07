@@ -1,13 +1,13 @@
 # Rails Programming Task
 *Note: This task should take no longer than 4 hours at the most to complete.*
 
-### Versions
+## Versions
 * Rails 6
 * Ruby 2.6.1
 * Postgres 11
 * Git <Any>
 
-### Prerequisites
+## Prerequisites
 
 * You will need the following installed:
   * [Ruby on Rails](http://www.rubyonrails.org/)
@@ -15,7 +15,7 @@
   * [Postgres](https://www.postgresql.org/)
   * [Git](https://git-scm.com/)
 
-### Installation
+## Installation
   * Clone this repo
     * `git clone  https://github.com/simpleviewinc/zr-rails-test`
   * Install the gems
@@ -25,7 +25,7 @@
   * Get the project running
     * `bin/bundle exec puma -C config/puma.rb`
 
-### Tasks
+## Tasks
 
 1. Setup the environment
     * Use the commands listed in the `Installation` section above
@@ -99,13 +99,13 @@
   * Add a view template that displays a list of pages created by the user
     * Add a button to the `_navbar.html.erb` template the navigates to this view template
 
-## Important
-  * Not every change required is outlined above
-  * Some tasks require updating multiple files for that task to be completed
-  * While css styles, look, and feel are not a priority, the app should look decent
-
-### Submit
+## Submit
   * Submit a pull request to this repo
   * Send an us an email, letting us know it has been submitted
   * Deploy the app to the cloud
     * How this is done is not important. It just needs to be accessible via the internet
+
+## Important
+  * Not every change required is outlined above
+  * Some tasks require updating multiple files for that task to be completed
+  * While css styles, look, and feel are not a priority, the app should look decent
