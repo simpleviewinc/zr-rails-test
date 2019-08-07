@@ -47,55 +47,50 @@
 
 5. Fix the `Delete` buttons
     * This should remove the site from the displayed sites list, **WITHOUT** reloading the window
-      * Clicking this button should delete the site from the database as well
+    * Clicking this button should delete the site from the database
 
 6. Fix the `View` button
-    * By clicking on the `View` button of a site card, the app throws an error
-    * Update the app to navigate properly, and not throw an error
-      * Fix the route in the `sites controller` and add a new template in the `views folder`
-    * After fixing the button above, the app should navigate to the newly added template
-      * Just create the `show view template` in this step.
-      * The next step will define what the template should do and look like
+    * When clicking on the `View` button of a site card, the app throws an error
+    * Add a new `show view template`
+    * After clicking on the the `View` button, the app should navigate to the new `show view template`
 
-7. Build out the view template for the site's `show method` created in the last step
+7. Build out the `show view template` created in the last step
     * The template should meet these requirements
-      * It should show all attributes of the site
-        * These attributes should be editable
-        * Editing the attributes should save to the database => **persistent**
-        * Updates to these attributes should **NOT** require reloading the window
-      * It should show a list of pages linked to the site
-        * Each page should have an button or link to navigate to a `page show` view template
-          * Clicking the link on should navigate to the `page show` view template
-        * Each page should have an action to remove to page from the page list
-          * This should remove the page from `page list`, **WITHOUT** reloading the window
-            * Ensure the method exists in the `Pages controller`
-        * There should be an action to create a new page
+      * Show all attributes of a site
+        * Attributes should be editable
+        * Editing the attributes should be **persistent**
+        * Site attribute updates should **NOT** require reloading the window
+      * Show a list of pages linked to the site
+        * Each page should have
+          * A button or link to navigate to a `page show view template` 
+          * A button or link to remove to page from the page list
+            * This should remove the page from `page list`, **WITHOUT** reloading the window
+            * this should be **persistent**
+        * There should be a button or link to create a new page
           * Clicking this action should display a form to input the details for a new page
-            * This can be done through a modal, or some other method
           * When saved the new page **SHOULD** be linked to the current site
           * After it's created, the `page list` should update with the new page
             * This should **NOT** require reloading the window
 
-8. Build out a Page view template for the page's `show method`
+8. Build out the `page show view template` 
     * Clicking on the link in the sites `page list` from above should navigate to this template
-    * It should show all attributes of the page
-      * These attributes should be editable
-      * Editing the attributes should save to the database => **persistent**
-      * Updates to these attributes should **NOT** require a window reload
-    * It should display the image attribute as an **ACTUAL** image, **NOT** just the image url
-    * It should display the body content as **ACTUAL** html, not in a string format
+    * The template should meet these requirements
+      * Show all attributes of a page
+        * Attributes should be editable
+        * Editing the attributes should be **persistent**
+        * Page attribute updates should **NOT** require reloading the window
+      * Display the image attribute as an **ACTUAL** image, **NOT** just the image url
+      * Display the body content as **ACTUAL** html, not in a string format
 
 9. Add a new migration
-    * Pages are linked to a site, but not to a user
-    * Create a new migration to link a user to a page
-      * The migration should **ALSO** do the following:
-        * Find all previously created pages
-        * For each page find the site, and add sites user as the user for the page
+    * The migration should meet these requirements
+      * Link a user to a page
+      * User should be added when the page is created
+      * For all previously created pages
+        * Find the linked site, add the sites user as the user for the page
 
 10. Update the `page controller` index route
-    * It should respond to different types of requests
-      * For a JSON request it should respond with JSON
-      * For an HTML request it should respond with HTML
+    * It should respond to different types of requests ( JSON && HTML )
     * Add a view template that displays a list of pages created by the logged in user
       * Add a button to the `_navbar.html.erb` template that navigates to this view template
 
@@ -118,6 +113,9 @@
     * How this is done is not important. It just needs to be accessible via the internet
 
 ## Important
-  * Not every change required is outlined above
+  * Not every change required is outlined above. We want to see how you would do it
   * Some tasks require updating multiple files for that task to be completed
+    * Don't be afraid to add, move, or change parts of the app. Show us what you can do
+  * Your are encouraged to **show your work** through comments
+    * You don't have to comment every little change, but we would like to see your thought process
   * While css styles, look, and feel are not a priority, the app should look decent

@@ -32,6 +32,13 @@ zerista_run_server(){
 # Install the gems
 # Example => bash ./run.sh bundle
 zerista_run_bundler(){
+  # Allow pulling http gems when doing bundle install
+  ./bin/bundle config git.allow_insecure true
+
+  # Disable bundle root warning
+  ./bin/bundle config silence_root_warning true
+
+  # Run the install, to install all gems
   ./bin/bundle install
 }
 
