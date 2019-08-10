@@ -1,3 +1,5 @@
 $("#p-list").hide();
+$("h4").hide();
+
 console.log("penidng search results")
-$("#search-results").html("<%= escape_javascript(render :partial => 'results') %>");
+$("#search-results .row").html("<%= escape_javascript(render :partial => 'results') %>");

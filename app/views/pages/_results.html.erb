@@ -1,19 +1,23 @@
 
+
 <% @search_results_posts.each do |page| %>
-<div class="col-12">
-<div class="card mt-2">
+<div class="col-6">
+
+  <div class="card mt-2">
+  <div class="card-header"><%= page.name %></div>
   <div class="card-img-top">
     <%= image_tag(page.photo.url, size: "100%", alt: '') if page.photo? %>
   </div>
   <div class="card-body">
-    <h5 class="card-title"><%= page.name %></h5>
     <p class="card-text"><%= raw page.body %></p>
-    <p class="card-text"><small class="text-muted"><%= page.created_at %> |
+    <p class="card-text"><small class="text-muted"><%= time_ago_in_words(page.created_at) %> |
       <% if current_page?('/pages') %>
       <%= link_to 'View site', site_path(page.site_id) %>
       <% else %>
       <%= link_to 'View Page', page_path(page) %>
       <% end %>
+      </small>
+      </p>
   </div>
 </div>
 </div>

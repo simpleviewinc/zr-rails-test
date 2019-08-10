@@ -1,7 +1,8 @@
 <div class="container mb-5">
-  <%= image_tag(@page.photo.url, size: "1000x400", alt: '') if @page.photo? %>
+  <div class="jumbotron">
+  <%= image_tag(@page.photo.url, width: "100%", height: "400px", alt: '') if @page.photo? %>
   <%= render 'pages/form' %>
 </div>
-
+</div>
 
 <div id="notice"></div>

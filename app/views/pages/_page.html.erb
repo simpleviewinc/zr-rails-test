@@ -1,12 +1,14 @@
+
 <div class="col-6">
-<div id="<%=page.id %>" class="card p-3 m-1">
+<div id="<%=page.id %>" class="card p-0 m-1">
+  <div class="card-header"><%= page.name %></div>
   <div class="card-img-top">
     <%= image_tag(page.photo.url, width: "100%", alt: '') if page.photo? %>
   </div>
+
   <div class="card-body">
-    <h5 class="card-title"><%= page.name %></h5>
     <p class="card-text"><%= raw page.body %></p>
-    <p class="card-text"><small class="text-muted"><%= page.created_at %> |
+    <p class="card-text"><small class="text-muted">Added <%= time_ago_in_words(page.created_at) %> |
 
       <% if current_page?('/pages') %>
       <%= link_to 'View site', site_path(page.site_id) %>
@@ -15,8 +17,9 @@
       <% end %>
 
     </small>
-    <br><%= link_to "Delete", page_path(page.id), remote: true,
-    method: :delete, data: { confirm: "Are you sure?" }, :class => 'btn btn-raised btn-danger' %>
+    <hr>
+    <%= link_to "Delete", page_path(page.id), remote: true,
+    method: :delete, data: { confirm: "Are you sure?" }, :class => 'btn btn-raised btn-danger mt-3 float-right' %>
   </p>
 </div>
 </div>

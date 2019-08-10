@@ -14,7 +14,6 @@ class PagesController < ApplicationController
       redirect_to '/users/sign_in'
       else
       @pages = Page.where(user: @ZR_USER.id)
-
     end
     end
   end
@@ -39,9 +38,7 @@ class PagesController < ApplicationController
 
   def update
     @page = Page.find(params[:id])
-
     @page.update_attributes(page_params)
-
     respond_to do |f|
       f.js {flash.now[:notice] = "Page info has been updated!"}
     end
