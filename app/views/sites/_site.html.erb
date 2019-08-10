@@ -37,12 +37,10 @@
 
   <div class="card-footer d-flex flex-row justify-content-between">
     <div >
-      <a class="text-danger bold pointer remove-site" data-site-id="<%= site.id %>">
-        <i class="fa fa-trash"></i>
-        Delete
+
         <%= link_to "Delete", site_path(site.id), remote: true,
-                                method: :delete, data: { confirm: "Are you sure?" }, :class => 'delete_site' %>
-      </a>
+                                method: :delete, data: { confirm: "Are you sure?" }, class: 'btn btn-danger fa fa-trash' %>
+
     </div>
     <div class="ml-3" >
       <%= link_to(site) do %>

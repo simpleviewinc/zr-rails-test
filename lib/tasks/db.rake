@@ -1,5 +1,4 @@
 namespace :db do
-
   namespace :build do
     desc "Create Relationship for User and Pages"
     task :create_relationship => :environment do
