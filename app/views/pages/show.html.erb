@@ -1,4 +1,7 @@
-<div class="container">
+<div class="container mb-5">
   <%= image_tag(@page.photo.url, size: "1000x400", alt: '') if @page.photo? %>
   <%= render 'pages/form' %>
 </div>
+
+
+<div id="notice"></div>
