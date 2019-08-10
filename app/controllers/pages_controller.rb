@@ -9,7 +9,13 @@ class PagesController < ApplicationController
         format.js { render partial: 'search-results'}
       end
     else
+      if !@ZR_USER
+      # If no user, redirect to login.
+      redirect_to '/users/sign_in'
+      else
       @pages = Page.where(user: @ZR_USER.id)
+
+    end
     end
   end
 

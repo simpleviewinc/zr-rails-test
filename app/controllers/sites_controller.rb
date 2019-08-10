@@ -3,13 +3,12 @@ class SitesController < ApplicationController
   skip_before_action :authenticate_user!, only: [:index]
 
   def index
-    # Where is @ZR_USER coming from?
+    # Where is @ZR_USER coming from? It's set in the lib/zerista library as an instance variable
     if !@ZR_USER
       # This should redirect to force the user to login
       @sites = []
     elsif
       # Update to only load site for the current @ZR_USER
-      p @ZR_USER.id
       @sites = Site.where(user: @ZR_USER.id)
     end
 
@@ -41,7 +40,7 @@ class SitesController < ApplicationController
    end
  end
 
-  # Missing delete method
+  # Delete method should respond with JSON
   def destroy
     @site = Site.find(params[:id])
 
@@ -55,13 +54,9 @@ class SitesController < ApplicationController
     end
   end
 
-
-  # Delete method should respond with JSON
-
   private
 
   def site_params
-
     params.require(:site).permit(:name, :domain, :description, :id, page: [:name, :path, :header, :body, :photo, :photo_cache])
   end
 end

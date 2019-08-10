@@ -1,6 +1,6 @@
 
 <% @search_results_posts.each do |page| %>
-<div class="col-4">
+<div class="col-12">
 <div class="card mt-2">
   <div class="card-img-top">
     <%= image_tag(page.photo.url, size: "100%", alt: '') if page.photo? %>
