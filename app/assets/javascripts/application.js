@@ -16,12 +16,12 @@ if (document.getElementById("site_form")) {
 }
 
 
-document.getElementById("search").addEventListener("change", searchFunction);
+document.getElementById("search").addEventListener("keypress", searchFunction);
 
 function searchFunction() {
   console.log("hit function")
   form = document.getElementById('search');
-  Rails.fire(form, 'submit');
+  $( "#search-form" ).trigger( "click" );
 }
 
 

@@ -5,9 +5,16 @@
   <div class="card-body">
     <h5 class="card-title"><%= page.name %></h5>
     <p class="card-text"><%== page.body %></p>
-    <p class="card-text"><small class="text-muted"><%= page.created_at %> | <%= link_to 'View Page', page_path(page) %> </small>
-      <br><%= link_to "Delete", page_path(page.id), remote: true,
-      method: :delete, data: { confirm: "Are you sure?" }, :class => 'btn btn-raised btn-danger' %>
-    </p>
-  </div>
+    <p class="card-text"><small class="text-muted"><%= page.created_at %> |
+      <% if current_page?('/pages') %>
+      <%= link_to 'View site', site_path(page.site_id) %>
+      <% else %>
+      <%= link_to 'View Page', page_path(page) %>
+      <% end %>
+
+    </small>
+    <br><%= link_to "Delete", page_path(page.id), remote: true,
+    method: :delete, data: { confirm: "Are you sure?" }, :class => 'btn btn-raised btn-danger' %>
+  </p>
+</div>
 </div>

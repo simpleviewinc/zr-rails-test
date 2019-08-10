@@ -2,7 +2,7 @@
 <div class="jumbotron">
   <%= form_tag(pages_path, method: "get", remote: true) do %>
   <%= text_field_tag :search, params[:search], placeholder: "Search For Page", class: "form-control form-control-lg" %>
-  <%= submit_tag "Search", class: "btn btn-primary mt-1" %>
+  <%= submit_tag "Search", class: "btn btn-primary mt-1", id: 'search-form' %>
   <% end %>
   </div>
 
