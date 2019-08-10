@@ -19,9 +19,7 @@ class SitesController < ApplicationController
     # Hitting this route throws an error. This route should navigate to a show page for @ZR_SITE
     @ZR_SITE
     @site = Site.find(params[:id])
-
     @page = Page.new
-
   end
 
   def create
@@ -32,25 +30,21 @@ class SitesController < ApplicationController
 
   def update
    @site = Site.find(params[:id])
-
-   @site.update_attributes(site_params) || @site.new([site_params])
-
+   @site.update_attributes(site_params)
    respond_to do |f|
-     f.js {flash[:notice] = "New data saved!"}
+     f.js { flash.now[:notice] = "Site info has been updated!" }
    end
  end
 
   # Delete method should respond with JSON
   def destroy
     @site = Site.find(params[:id])
-
     if @site.present?
       @site.destroy
     end
     respond_to do |format|
       format.js { render :layout => false, notice: 'Site was successfully destroyed.'}
       format.html { redirect_to sites_url, notice: 'Site was successfully destroyed.' }
-
     end
   end
 

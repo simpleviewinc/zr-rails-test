@@ -14,7 +14,6 @@ if (document.getElementById("site_form")) {
   function updateFunction() {
     form = document.getElementById('site_form');
     Rails.fire(form, 'submit');
-    $("#notice").html("Data has been saved");
   }
 }
 

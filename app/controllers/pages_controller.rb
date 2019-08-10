@@ -43,7 +43,7 @@ class PagesController < ApplicationController
     @page.update_attributes(page_params)
 
     respond_to do |f|
-      f.js {flash[:notice] = "New data saved!"}
+      f.js {flash.now[:notice] = "New data saved!"}
     end
   end
 
