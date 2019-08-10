@@ -1,5 +1,7 @@
+
 <div class="card-deck">
 <% @search_results_posts.each do |page| %>
+<div class="col-6">
 <div class="card">
   <div class="card-img-top">
     <%= image_tag(page.photo.url, size: "300x200", alt: '') if page.photo? %>
@@ -10,5 +12,7 @@
     <p class="card-text"><small class="text-muted"><%= page.created_at %> | <%= link_to 'View Page', page_path(page) %></small></p>
   </div>
 </div>
+</div>
 <% end %>
+
 </div>
