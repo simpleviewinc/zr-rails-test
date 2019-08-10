@@ -1,0 +1,7 @@
+// $Rails.$('.delete_site').bind('ajax:success', function() {
+//   $(this).closest('.card').fadeOut();
+// });
+
+
+document.getElementById("card_<%= @site.id %>").remove();
+// Rails.$('.card-deck').append("<%= j (render partial: 'site', locals: { site: @site }) %>")

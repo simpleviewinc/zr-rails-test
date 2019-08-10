@@ -1,0 +1,27 @@
+  <div class="container">
+
+    <div class="row">
+      <div class="col-12">
+      <%= render 'sites/form', site: @site %>
+      </div>
+    </div>
+
+    <div class="row mt-5">
+      <div class="col-8">
+        <%= render 'sites/new-page-button' %>
+      </div>
+    </div>
+
+    <% if @site.pages.length === 0  %>
+    <div id="page-list">
+      <p> There are no pages associated with this site. </p>
+    </div>
+    <% else %>
+
+      <div id="page-list">
+        <%= render @site.pages %>
+      </div>
+
+    <% end %>
+
+  </div>

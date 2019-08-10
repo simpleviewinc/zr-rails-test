@@ -1,0 +1,14 @@
+<div class="card-deck">
+<% @search_results_posts.each do |page| %>
+<div class="card">
+  <div class="card-img-top">
+    <%= image_tag(page.photo.url, size: "300x200", alt: '') if page.photo? %>
+  </div>
+  <div class="card-body">
+    <h5 class="card-title"><%= page.name %></h5>
+    <p class="card-text"><%= page.body %></p>
+    <p class="card-text"><small class="text-muted"><%= page.created_at %> | <%= link_to 'View Page', page_path(page) %></small></p>
+  </div>
+</div>
+<% end %>
+</div>
