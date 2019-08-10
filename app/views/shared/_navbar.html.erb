@@ -3,12 +3,15 @@
     <img src="https://d3w3ioujxcalzn.cloudfront.net/icons/0c0a/images/1856494/large/z-icon-white-300x300.png" width="30" height="30" alt="" class="d-inline-block align-top" >
   <% end %>
   <h5 class="my-0 mr-md-auto font-weight-normal">Zerista Rails Test</h5>
-  <div class="nav-item">
-    <%= link_to "Pages", pages_path %>
-  </div>
-
+  <ul class="nav">
+    <li class="nav-item">
+      <%= link_to "Sites", sites_path, class: 'nav-link' %>
+    </li>
+  <li class="nav-item">
+    <%= link_to "Pages", pages_path, class: 'nav-link' %>
+  </li>
+</ul>
   <nav class="my-2 my-md-0 mr-md-3">
-
     <%= render 'shared/login-button' %>
   </nav>
 </div>

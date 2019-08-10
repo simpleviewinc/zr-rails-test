@@ -1,18 +1,20 @@
 
-<div class="card-deck">
 <% @search_results_posts.each do |page| %>
-<div class="col-6">
-<div class="card">
+<div class="col-4">
+<div class="card mt-2">
   <div class="card-img-top">
-    <%= image_tag(page.photo.url, size: "300x200", alt: '') if page.photo? %>
+    <%= image_tag(page.photo.url, size: "100%", alt: '') if page.photo? %>
   </div>
   <div class="card-body">
     <h5 class="card-title"><%= page.name %></h5>
-    <p class="card-text"><%= page.body %></p>
-    <p class="card-text"><small class="text-muted"><%= page.created_at %> | <%= link_to 'View Page', page_path(page) %></small></p>
+    <p class="card-text"><%= raw page.body %></p>
+    <p class="card-text"><small class="text-muted"><%= page.created_at %> |
+      <% if current_page?('/pages') %>
+      <%= link_to 'View site', site_path(page.site_id) %>
+      <% else %>
+      <%= link_to 'View Page', page_path(page) %>
+      <% end %>
   </div>
 </div>
 </div>
 <% end %>
-
-</div>

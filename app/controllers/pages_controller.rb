@@ -17,7 +17,7 @@ class PagesController < ApplicationController
     @page = Page.new
   end
 
-  # Respond with JSON
+
   def create
     @page = Page.create(page_params)
     p page_params[:site_id]
@@ -34,10 +34,10 @@ class PagesController < ApplicationController
   def update
     @page = Page.find(params[:id])
 
-    @page.update_attributes(page_params) || @site.new([site_params])
+    @page.update_attributes(page_params)
 
     respond_to do |f|
-      f.js
+      f.js {flash[:notice] = "New data saved!"}
     end
   end
 

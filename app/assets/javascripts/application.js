@@ -5,6 +5,8 @@
 document.addEventListener("DOMContentLoaded", () => {
   console.log('The page is loaded!')
 
+  $( "#search-form" ).hide()
+
 
 if (document.getElementById("site_form")) {
   document.getElementById("site_form").addEventListener("change", updateFunction);
@@ -12,6 +14,7 @@ if (document.getElementById("site_form")) {
   function updateFunction() {
     form = document.getElementById('site_form');
     Rails.fire(form, 'submit');
+    $("#notice").html("Data has been saved");
   }
 }
 

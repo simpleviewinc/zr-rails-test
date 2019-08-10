@@ -37,7 +37,7 @@ class SitesController < ApplicationController
    @site.update_attributes(site_params) || @site.new([site_params])
 
    respond_to do |f|
-     f.js
+     f.js {flash[:notice] = "New data saved!"}
    end
  end
 
@@ -49,7 +49,7 @@ class SitesController < ApplicationController
       @site.destroy
     end
     respond_to do |format|
-      format.js { render :layout => false }
+      format.js { render :layout => false, notice: 'Site was successfully destroyed.'}
       format.html { redirect_to sites_url, notice: 'Site was successfully destroyed.' }
 
     end
