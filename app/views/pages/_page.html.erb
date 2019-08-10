@@ -1,3 +1,13 @@
-<div class="page">
-  <%= page.name %>
+<div id="<%=page.id %>" class="card p-3 m-1">
+  <div class="card-img-top">
+    <%= image_tag(page.photo.url, size: "300x200", alt: '') if page.photo? %>
+  </div>
+  <div class="card-body">
+    <h5 class="card-title"><%= page.name %></h5>
+    <p class="card-text"><%== page.body %></p>
+    <p class="card-text"><small class="text-muted"><%= page.created_at %> | <%= link_to 'View Page', page_path(page) %> </small>
+      <br><%= link_to "Delete", page_path(page.id), remote: true,
+      method: :delete, data: { confirm: "Are you sure?" }, :class => 'btn btn-raised btn-danger' %>
+    </p>
+  </div>
 </div>

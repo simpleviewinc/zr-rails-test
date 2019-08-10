@@ -1,6 +1,6 @@
 <div class="sites-container container mt-5">
   <div class="jumbotron">
-
+  <% if current_user %>
     <% if @sites.length > 0 %>
 
       <div class="jumbo-header" >
@@ -21,7 +21,7 @@
       </div>
 
     <% end %>
-  
+
 
     <% if @sites.length === 0 %>
       <div class="jumbo-header" >
@@ -45,7 +45,9 @@
   </div>
 </div>
 
+<% end %>
 
+<%if !current_user %>
 <div class="container mt-5">
   <div class="jumbotron">
 
@@ -66,6 +68,4 @@
     </div>
   </div>
 </div>
-
-
-
+<% end %>

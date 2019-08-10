@@ -3,22 +3,64 @@ class PagesController < ApplicationController
 
   # Respond with JSON
   def index
-    @pages = Page.all
+    if params[:search]
+      @search_results_posts = Page.where("name ILIKE ?", "%#{params[:search]}%")
+      respond_to do |format|
+        format.js { render partial: 'search-results'}
+      end
+    else
+      @pages = Page.where(user: @ZR_USER.id)
+    end
+  end
+
+  def new
+    @page = Page.new
   end
 
   # Respond with JSON
   def create
-    # Add code to create a new page
+    @page = Page.create(page_params)
+    p page_params[:site_id]
+    flash[:alert] = "Site Error: #{@page.errors.full_messages.join(', ')}" unless @page.persisted?
+    respond_to do |f|
+      f.html { redirect_to  }
+      f.json { render :show, status: :created, location: @pages }
+      f.js do
+        @site = Site.find(page_params[:site_id])
+      end
+    end
+  end
+
+  def update
+    @page = Page.find(params[:id])
+
+    @page.update_attributes(page_params) || @site.new([site_params])
+
+    respond_to do |f|
+      f.js
+    end
   end
 
   # Show method should respond with HTML or JSON
   def show
     @ZR_PAGE
+    @page = Page.find(params[:id])
+  end
+
+  def destroy
+    @page = Page.find(params[:id])
+    if @page.present?
+      @page.destroy
+    end
+    respond_to do |format|
+      format.js { render :layout => false }
+      format.html { redirect_to sites_url, notice: 'Site was successfully destroyed.' }
+    end
   end
 
   private
 
   def page_params
-    # Add the allowed page params
+    params.require(:page).permit(:name, :path, :header, :body, :photo_cache, :photo, :site_id, :user_id)
   end
 end

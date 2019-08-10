@@ -9,7 +9,8 @@ class SitesController < ApplicationController
       @sites = []
     elsif
       # Update to only load site for the current @ZR_USER
-      @sites = Site.all
+      p @ZR_USER.id
+      @sites = Site.where(user: @ZR_USER.id)
     end
 
     @sites
@@ -18,6 +19,10 @@ class SitesController < ApplicationController
   def show
     # Hitting this route throws an error. This route should navigate to a show page for @ZR_SITE
     @ZR_SITE
+    @site = Site.find(params[:id])
+
+    @page = Page.new
+
   end
 
   def create
@@ -26,12 +31,37 @@ class SitesController < ApplicationController
     redirect_to root_path
   end
 
+  def update
+   @site = Site.find(params[:id])
+
+   @site.update_attributes(site_params) || @site.new([site_params])
+
+   respond_to do |f|
+     f.js
+   end
+ end
+
   # Missing delete method
+  def destroy
+    @site = Site.find(params[:id])
+
+    if @site.present?
+      @site.destroy
+    end
+    respond_to do |format|
+      format.js { render :layout => false }
+      format.html { redirect_to sites_url, notice: 'Site was successfully destroyed.' }
+
+    end
+  end
+
+
   # Delete method should respond with JSON
 
   private
 
   def site_params
-    params.require(:site).permit(:name, :domain, :description, :id)
+
+    params.require(:site).permit(:name, :domain, :description, :id, page: [:name, :path, :header, :body, :photo, :photo_cache])
   end
 end

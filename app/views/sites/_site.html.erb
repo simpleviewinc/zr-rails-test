@@ -1,4 +1,4 @@
-<div class="card mb-4 shadow-sm" >
+<div id="card_<%= site.id %>" class="card mb-4 shadow-sm" >
   <div class="card-header">
     <h4 class="my-0 font-weight-normal"><%= site.name %></h4>
   </div>
@@ -40,6 +40,8 @@
       <a class="text-danger bold pointer remove-site" data-site-id="<%= site.id %>">
         <i class="fa fa-trash"></i>
         Delete
+        <%= link_to "Delete", site_path(site.id), remote: true,
+                                method: :delete, data: { confirm: "Are you sure?" }, :class => 'delete_site' %>
       </a>
     </div>
     <div class="ml-3" >
