@@ -4,7 +4,7 @@ class PagesController < ApplicationController
   # Respond with JSON
   def index
     if params[:search]
-      @search_results_posts = Page.where("name ILIKE ?", "%#{params[:search]}%")
+      @search_results_pages = Page.search_pages(params[:search])
       respond_to do |format|
         format.js { render partial: 'search-results'}
       end
