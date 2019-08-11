@@ -17,7 +17,7 @@ if (document.getElementById("site_form")) {
 }
 
 if (document.getElementById("search")) {
-document.getElementById("search").addEventListener("keypress", searchFunction);
+document.getElementById("search").addEventListener("keyup", searchFunction);
 
 function searchFunction() {
   console.log("hit function")
