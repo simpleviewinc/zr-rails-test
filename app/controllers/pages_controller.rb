@@ -1,7 +1,7 @@
 class PagesController < ApplicationController
   skip_before_action :authenticate_user!, only: [:index]
 
-  # Respond with JSON
+  #Added index.json.jbuilder
   def index
     if params[:search]
       @search_results_pages = Page.search_pages(params[:search])
@@ -10,11 +10,11 @@ class PagesController < ApplicationController
       end
     else
       if !@ZR_USER
-      # If no user, redirect to login.
-      redirect_to '/users/sign_in'
+        # If no user, redirect to login.
+        redirect_to '/users/sign_in'
       else
-      @pages = Page.where(user: @ZR_USER.id)
-    end
+        @pages = Page.where(user: @ZR_USER.id)
+      end
     end
   end
 
@@ -22,10 +22,10 @@ class PagesController < ApplicationController
     @page = Page.new
   end
 
+  #Only modification made on create was I added respond_to f.js in order to allow for an AJAX call.
 
   def create
     @page = Page.create(page_params)
-    p page_params[:site_id]
     flash[:alert] = "Site Error: #{@page.errors.full_messages.join(', ')}" unless @page.persisted?
     respond_to do |f|
       f.html { redirect_to  }
@@ -36,11 +36,18 @@ class PagesController < ApplicationController
     end
   end
 
+  #Udpate is triggered by a js function located in application.js that submits the form on keypress.
+  #On submit, we find the record, and update attributes. If the user leaves a field blank, a
+  #alert notifies the user the data wasn't saved.
+
   def update
     @page = Page.find(params[:id])
-    @page.update_attributes(page_params)
-    respond_to do |f|
-      f.js {flash.now[:notice] = "Page info has been updated!"}
+    if @page.update_attributes(page_params)
+      respond_to do |f|
+        f.js {flash.now[:notice] = "Page info has been updated!"}
+      end
+    else
+      flash.now[:alert] = "Error: Field Required! "
     end
   end
 

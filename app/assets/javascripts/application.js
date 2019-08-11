@@ -17,13 +17,13 @@ if (document.getElementById("site_form")) {
 }
 
 if (document.getElementById("search")) {
-document.getElementById("search").addEventListener("keyup", searchFunction);
+  document.getElementById("search").addEventListener("keyup", searchFunction);
 
 function searchFunction() {
   console.log("hit function")
   form = document.getElementById('search');
   $( "#search-form" ).trigger( "click" );
-}
+  }
 }
 
 
