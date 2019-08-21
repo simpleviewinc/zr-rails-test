@@ -45,27 +45,28 @@
   </div>
 </div>
 
+<% unless current_user %>
+  <div class="container mt-5">
+    <div class="jumbotron">
 
-<div class="container mt-5">
-  <div class="jumbotron">
+      <div class="jumbo-header" >
+        <h2>
+          <i class="fa fa-user" ></i>
+          Please Login
+        </h2>
+      </div>
+      <p class="lead">
+        You must be logged in to view this section!
+      </p>
 
-    <div class="jumbo-header" >
-      <h2>
-        <i class="fa fa-user" ></i>
-        Please Login
-      </h2>
-    </div>
-    <p class="lead">
-      You must be logged in to view this section!
-    </p>
-
-    <div class="row">
-      <div class="col-sm">
-        <%= render 'shared/login-button' %>
+      <div class="row">
+        <div class="col-sm">
+          <%= render 'shared/login-button' %>
+        </div>
       </div>
     </div>
   </div>
-</div>
+<% end %>
 
 
 
