@@ -26,8 +26,16 @@ class SitesController < ApplicationController
     redirect_to root_path
   end
 
-  # Missing delete method
-  # Delete method should respond with JSON
+  # Added destroy method for deleting sites.
+  def destroy
+      @site = Site.find(params[:id])
+      @site.destroy if @site.present?
+      respond_to do |format|
+        format.js { render :layout => false }
+        format.html { redirect_to sites_url,
+                      notice: 'Site successfully deleted.' }
+      end
+    end
 
   private
 
