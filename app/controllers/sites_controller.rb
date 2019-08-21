@@ -8,8 +8,8 @@ class SitesController < ApplicationController
       # This should redirect to force the user to login
       @sites = []
     elsif
-      # Update to only load site for the current @ZR_USER
-      @sites = Site.all
+      # Only load sites for the current @ZR_USER
+      @sites = Site.where(user: @ZR_USER.id)
     end
 
     @sites
