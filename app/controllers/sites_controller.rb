@@ -16,8 +16,11 @@ class SitesController < ApplicationController
   end
 
   def show
-    # Hitting this route throws an error. This route should navigate to a show page for @ZR_SITE
+    # fleshed out a show method with some flavor.
     @ZR_SITE
+    @site = Site.find(params[:id])
+    @factors = (1..@site.id).filter{ |d| @site.id % d == 0 }
+                            .map(&:to_s).join(" and ")
   end
 
   def create
