@@ -1,8 +1,27 @@
-<!-- created html to show individual sites -->
-<div style='padding-left: 10em; padding-top: 3em' >
-    <h3>Factors</h3>
-      <div>
-        The site id for this site is <%= @site.id %>.<br>
-        It has <%= @factors %> as factors.
-      </div>
+<!-- Attributes of a site are editable -->
+<style>
+  div {padding-top: 2em}
+  .header {padding-left: 10em; padding-bottom: 3em;}
+</style>
+
+<div class='header'>
+  <h3>Site: <%= @site.domain %></h3>
+    <div>
+      The site id for this site is <%= @site.id %>.<br>
+      It has <%= @factors %> as factors.
+    </div>
+
+    <div>
+      <%= form_tag site_path(@site), method: :put do %>
+        <% @site.attributes.each do |(atr, v)| %>
+          <label> <%= atr %>: </label>
+          <%= text_field_tag atr, @site.send(atr.to_sym) %><br>
+        <% end %>
+
+        <div>
+          <%= submit_tag "Submit Post" %>
+        </div>
+      <% end %>
+    </div>
+
 </div>

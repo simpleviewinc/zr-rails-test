@@ -7,6 +7,7 @@ class SitesController < ApplicationController
     if !@ZR_USER
       # This should redirect to force the user to login
       @sites = []
+      redirect_to '/users/sign_in'
     elsif
       # Only load sites for the current @ZR_USER
       @sites = Site.where(user: @ZR_USER.id)
@@ -17,10 +18,21 @@ class SitesController < ApplicationController
 
   def show
     # fleshed out a show method with some flavor.
-    @ZR_SITE
     @site = Site.find(params[:id])
+    @page = Page.new
     @factors = (1..@site.id).filter{ |d| @site.id % d == 0 }
                             .map(&:to_s).join(" and ")
+  end
+
+  def edit
+    @site = Site.find(params[:id])
+    render :edit
+  end
+
+   def update
+    @site = Site.find(params[:id])
+    @site.update_attributes(site_params) || @site.new([site_params])
+    redirect_to site_path(params[:id])
   end
 
   def create
