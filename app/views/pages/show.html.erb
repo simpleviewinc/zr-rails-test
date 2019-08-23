@@ -2,19 +2,21 @@
 <style>
   div {padding-top: 1em}
   .header {padding-left: 10em; padding-bottom: 3em;}
-  .inputs {width:30em;}
+  .inputs {width:60%;}
 </style>
 
 <div class='header'>
   <h3><%= @page.name %></h3>
 
   <div class='page-data'>
-    <%= simple_form_for @page, remote: true do |f|%>
+    <%= simple_form_for @page do |f|%>
       <div class="inputs">
         <%= f.input :name, required: true %>
         <%= f.input :path, required: true %>
         <%= f.input :header, required: true %>
+        <%= raw @page.body %>
         <%= f.input :body, required: true, as: :text, input_html: {rows: 4} %>
+        <%= image_tag(@page.photo.url, width: "100%") %>
         <%= f.input :photo, required: true %>
         <%= f.input :photo_cache, as: :hidden %>
         <%= f.input :site_id, as: :hidden %>
