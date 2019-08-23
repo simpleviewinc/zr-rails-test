@@ -36,7 +36,7 @@
   </div>
 
   <!-- delete button links to destroy method,
-       updates without refresh, removes site from database.  -->
+       updates without hitting refresh, removes site from database.  -->
   <div class="card-footer d-flex flex-row justify-content-between">
     <div >
       <a class="text-danger bold pointer remove-site" data-site-id="<%= site.id %>">
@@ -44,8 +44,7 @@
         <%= link_to "Delete", site_path(site.id),
           data: { confirm: "Are you sure?" },
           :class => 'text-danger',
-          method: :delete,
-          remote: true %>
+          method: :delete%>
       </a>
     </div>
     <div class="ml-3" >
