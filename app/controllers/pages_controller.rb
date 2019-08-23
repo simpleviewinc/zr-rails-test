@@ -22,7 +22,6 @@ class PagesController < ApplicationController
     @page = Page.find(params[:id])
     @site = Site.find(params[:page][:site_id])
     @page.update_attributes(page_params) || @page.new([page_params])
-    redirect_to page_path(params[:id]) # verify this line
   end
 
   def destroy
