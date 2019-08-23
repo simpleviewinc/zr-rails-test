@@ -3,7 +3,7 @@ class SitesController < ApplicationController
   skip_before_action :authenticate_user!, only: [:index]
 
   def index
-    # Where is @ZR_USER coming from?
+    # @ZR_USER is coming from zr_action_base.rb
     if !@ZR_USER
       # This should redirect to force the user to login
       @sites = []
@@ -17,11 +17,9 @@ class SitesController < ApplicationController
   end
 
   def show
-    # fleshed out a show method with some flavor.
+    # Added show method.
     @site = Site.find(params[:id])
-    @page = Page.new
-    @factors = (1..@site.id).filter{ |d| @site.id % d == 0 }
-                            .map(&:to_s).join(" and ")
+    @pages = @site.pages
   end
 
   def edit

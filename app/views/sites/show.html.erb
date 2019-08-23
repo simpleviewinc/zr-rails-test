@@ -1,27 +1,35 @@
 <!-- Attributes of a site are editable -->
 <style>
-  div {padding-top: 2em}
+  div {padding-top: 1em}
   .header {padding-left: 10em; padding-bottom: 3em;}
+  .inputs {width:30em;}
 </style>
 
 <div class='header'>
   <h3>Site: <%= @site.domain %></h3>
-    <div>
-      The site id for this site is <%= @site.id %>.<br>
-      It has <%= @factors %> as factors.
-    </div>
 
-    <div>
-      <%= form_tag site_path(@site), method: :put do %>
-        <% @site.attributes.each do |(atr, v)| %>
-          <label> <%= atr %>: </label>
-          <%= text_field_tag atr, @site.send(atr.to_sym) %><br>
-        <% end %>
+  <div class='site-data'>
+    <%= simple_form_for @site, remote: true, html: { id: :site_form } do |f|%>
+      <div class="inputs">
+        <%= f.input :name, required: true %>
+        <%= f.input :domain, required: true %>
+        <%= f.input :description, required: true %>
+      </div>
+      <div>
+        <%= submit_tag "Submit Site Data" %>
+      </div>
+    <% end %>
+  </div>
 
-        <div>
-          <%= submit_tag "Submit Post" %>
-        </div>
-      <% end %>
-    </div>
+
+  <div class='page-data'>
+    <% @pages.each do |page| %>
+      <%= link_to page.name, page_path(page.id) %>
+      <%= link_to "[remove]", page_path(page.id), {method: :delete} %><br>
+    <% end %>
+
+    <%= render 'pages/new-page-button', site_id: @site.id %><br><br>
+  </div>
+
 
 </div>
