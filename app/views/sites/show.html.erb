@@ -20,10 +20,21 @@
     <% end %>
   </div>
 
-  <div class='page-data'>
+  <div class='page-data' style='padding-top: 2em;'>
+    <h3>Pages:</h3>
+
     <% @pages.each do |page| %>
-      <%= link_to page.name, page_path(page.id) %>
-      <%= link_to "[remove]", page_path(page.id), {method: :delete} %><br>
+      <span style='padding-right: 3%; font-size: 1.6em;'>
+        <%= link_to page.name, page_path(page.id) %>
+      </span>
+      <a class="text-danger bold pointer remove-site"
+         data-site-id="<%= @site.id %>">
+        <i class="fa fa-trash"></i>
+        <%= link_to "Remove", page_path(page.id),
+          data: { confirm: "Are you sure?" },
+          :class => 'text-danger',
+          method: :delete%>
+      </a><br>
     <% end %>
 
     <%= render 'pages/new-page-button', site_id: @site.id %><br><br>
