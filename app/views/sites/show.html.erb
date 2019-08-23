@@ -1,6 +1,7 @@
 <!-- Attributes of a site are editable -->
 <style>
   div {padding-top: 1em}
+  span {padding-right: 3%; font-size: 1.6em;}
   .header {padding-left: 10em; padding-bottom: 3em;}
   .inputs {width:30em;}
 </style>
@@ -14,7 +15,6 @@
         <%= f.input :name, required: true %>
         <%= f.input :domain, required: true %>
         <%= f.input :description, required: true %>
-
         <%= submit_tag "Submit Site Data" %>
       </div>
     <% end %>
@@ -24,7 +24,7 @@
     <h3>Pages:</h3>
 
     <% @pages.each do |page| %>
-      <span style='padding-right: 3%; font-size: 1.6em;'>
+      <span>
         <%= link_to page.name, page_path(page.id) %>
       </span>
       <a class="text-danger bold pointer remove-site"
