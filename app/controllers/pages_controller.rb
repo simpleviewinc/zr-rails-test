@@ -36,7 +36,7 @@ class PagesController < ApplicationController
 
   def page_params
     # Add the allowed page params
-    params.require(:page).permit(:name, :path, :header, :body,
+    params.require(:page).permit(:name, :path, :header, :body, :user,
                                  :photo_cache, :photo, :site_id)
   end
 end
