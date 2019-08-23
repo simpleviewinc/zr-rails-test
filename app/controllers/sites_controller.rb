@@ -43,6 +43,7 @@ class SitesController < ApplicationController
   def destroy
       @site = Site.find(params[:id])
       @site.destroy if @site.present?
+      redirect_to root_path
     end
 
   private
