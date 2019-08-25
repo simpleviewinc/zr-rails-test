@@ -3,10 +3,8 @@ class PagesController < ApplicationController
 
   def index
     if params[:search].present? # Search for /pages
-      pages = Page.arel_table
-      query = "%#{params[:search]}%"
-      @pages = Page.where(pages[:name].matches(query))
-    elsif params[:site_id].blank?
+      @pages = search_query
+    elsif params[:site_id].blank? # when user is viewing pages
       @pages = Page.where(user: @ZR_USER.id)
     else
       # eager load pages for less queries.
@@ -51,6 +49,12 @@ class PagesController < ApplicationController
 
 
   private
+
+  def search_query
+    pages = Page.arel_table
+    query = "%#{params[:search]}%"
+    Page.where(pages[:name].matches(query))
+  end
 
   def page_params
     params.require(:page).permit(:name, :path, :header, :body, :user,
