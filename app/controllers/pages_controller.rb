@@ -53,7 +53,8 @@ class PagesController < ApplicationController
   def search_query
     pages = Page.arel_table
     query = "%#{params[:search]}%"
-    Page.where(pages[:name].matches(query))
+    Page.where(user: @ZR_USER.id)
+        .where(pages[:name].matches(query))
   end
 
   def page_params
