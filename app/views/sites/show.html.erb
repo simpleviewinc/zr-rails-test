@@ -24,18 +24,18 @@
 
     <% @pages.each do |page| %>
       <span>
-        <%= link_to page.name, page_path(page.id) %>
+        <%= link_to page.name, site_page_path({site_id: @site.id, id: page.id}) %>
       </span>
       <a class="text-danger bold pointer remove-site"
          data-site-id="<%= @site.id %>">
         <i class="fa fa-trash"></i>
-        <%= link_to "Remove", page_path(page.id),
+        <%= link_to "Remove", site_page_path(page.id),
           data: { confirm: "Are you sure?" },
           :class => 'text-danger',
           method: :delete%>
       </a><br>
     <% end %>
 
-    <%= render 'pages/new-page-button', site_id: @site.id %><br><br>
+    <%= render 'pages/new-page-button' %><br><br>
   </div>
 </div>
