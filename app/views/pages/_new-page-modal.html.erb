@@ -7,7 +7,7 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <%= simple_form_for Page.new do |f|%>
+      <%= simple_form_for Page.new, url: site_pages_path(@site.id) do |f|%>
         <div class="modal-body">
           <%= f.input :name, required: true %>
           <%= f.input :path, required: true %>
@@ -20,7 +20,8 @@
                       input_html: { value: current_user.id} %>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-secondary"
+                  data-dismiss="modal">Close</button>
           <%= f.submit "Page", class: "btn btn-primary" %>
         </div>
       <% end %>
