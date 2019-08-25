@@ -1,24 +1,42 @@
 class PagesController < ApplicationController
   skip_before_action :authenticate_user!, only: [:index]
 
-  # Respond with JSON
   def index
-    @pages = Page.where(user: @ZR_USER.id)
+    if params[:search].present? # Search for /pages
+      pages = Page.arel_table
+      query = "%#{params[:search]}%"
+      @pages = Page.where(pages[:name].matches(query))
+    elsif params[:site_id].blank?
+      @pages = Page.where(user: @ZR_USER.id)
+    else
+      # eager load pages for less queries.
+      @site = Site.where(id: params[:site_id])
+              .includes(:pages).first
+      @pages = @site.pages
+    end
+
+    respond_to do |format|
+      format.html
+      format.json { render json: @pages }
+    end
   end
 
-  # Respond with JSON
   def create
-    # Add code to create a new page
     Page.create(page_params.merge(site_id: params[:site_id]))
     redirect_to site_path(params[:site_id])
   end
 
-  # Show method should respond with HTML or JSON
   def show
     @page = Page.find(params[:id])
+    @site = @page.site
+    respond_to do |format|
+      format.html
+      format.json { render json: @page }
+     end
   end
 
   def update
+
     @page = Page.find(params[:id])
     @site = Site.find(params[:page][:site_id])
     @page.update_attributes(page_params) || @page.new([page_params])
@@ -35,7 +53,6 @@ class PagesController < ApplicationController
   private
 
   def page_params
-    # Add the allowed page params
     params.require(:page).permit(:name, :path, :header, :body, :user,
                                  :photo_cache, :photo, :site_id)
   end
