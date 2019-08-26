@@ -1,0 +1,41 @@
+<style>
+  div {padding-top: 1em}
+  span {padding-right: 3%; font-size: 1.6em;}
+  .header {padding-left: 10em; padding-bottom: 3em;}
+  .inputs {width:30em;}
+</style>
+
+<div class='header'>
+  <h3>Site: <%= @site.domain %></h3>
+
+  <div class='site-data'>
+    <%= simple_form_for @site, remote: true do |f|%>
+      <div class="inputs">
+        <%= f.input :name, required: true %>
+        <%= f.input :domain, required: true %>
+        <%= f.input :description, required: true %>
+        <%= submit_tag "Submit Site Data" %>
+      </div>
+    <% end %>
+  </div>
+
+  <div class='page-data' style='padding-top: 2em;'>
+    <h3>Pages:</h3>
+
+    <% @pages.each do |page| %>
+      <span>
+        <%= link_to page.name, site_page_path({site_id: @site.id, id: page.id}) %>
+      </span>
+      <a class="text-danger bold pointer remove-site"
+         data-site-id="<%= @site.id %>">
+        <i class="fa fa-trash"></i>
+        <%= link_to "Remove", site_page_path(page.id),
+          data: { confirm: "Are you sure?" },
+          :class => 'text-danger',
+          method: :delete%>
+      </a><br>
+    <% end %>
+
+    <%= render 'pages/new-page-button' %><br><br>
+  </div>
+</div>

@@ -3,21 +3,34 @@ class SitesController < ApplicationController
   skip_before_action :authenticate_user!, only: [:index]
 
   def index
-    # Where is @ZR_USER coming from?
+    # @ZR_USER is coming from zr_action_base.rb
     if !@ZR_USER
       # This should redirect to force the user to login
       @sites = []
+      redirect_to '/users/sign_in'
     elsif
-      # Update to only load site for the current @ZR_USER
-      @sites = Site.all
+      # Only load sites for the current @ZR_USER
+      @sites = Site.where(user: @ZR_USER.id)
     end
 
     @sites
   end
 
   def show
-    # Hitting this route throws an error. This route should navigate to a show page for @ZR_SITE
-    @ZR_SITE
+    # Added show method.
+    @site = Site.find(params[:id])
+    @pages = @site.pages
+  end
+
+  def edit
+    @site = Site.find(params[:id])
+    render :edit
+  end
+
+   def update
+    @site = Site.find(params[:id])
+    @site.update_attributes(site_params) || @site.new([site_params])
+    redirect_to site_path(params[:id])
   end
 
   def create
@@ -26,8 +39,12 @@ class SitesController < ApplicationController
     redirect_to root_path
   end
 
-  # Missing delete method
-  # Delete method should respond with JSON
+  # Added destroy method for deleting sites.
+  def destroy
+      @site = Site.find(params[:id])
+      @site.destroy if @site.present?
+      redirect_to root_path
+    end
 
   private
 

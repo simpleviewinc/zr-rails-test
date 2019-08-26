@@ -1,12 +1,43 @@
-<div class="container">
-  <div class="pages-container">
-    <div class="row">
-      <% @pages.each do |page| %>
-        <div class="col-xs-12 col-sm-6 col-lg-4">
-          <%= render 'pages/page' %>
+<style>
+  div {padding-top: 1em}
+  span {padding-right: 3%; font-size: 1.6em;}
+  .header {padding-left: 10em; padding-bottom: 3em;}
+  .inputs {width:30em;}
+  .search {width:20%; padding-bottom: 5%}
+</style>
+
+<div class='header'>
+  <div class='page-data' style='padding-top: 2em;'>
+
+    <!-- SEARCH form -->
+    <div class='search'>
+      <%= form_tag '', method: 'GET' do %>
+        <%= text_field_tag 'search', params[:search] %>
+        <div>
+          <%= submit_tag 'Search', class: "btn btn-primary btn-lg btn-block"%>
         </div>
       <% end %>
     </div>
+
+    <h3>Pages:</h3>
+
+    <% @pages.each do |page| %>
+      <span class="col-sm-12 col-md-6 col-lg-4">
+        <%= link_to page.name, site_page_path(page.site_id, page.id)%>
+      </span>
+
+      <span class="col-sm-12 col-md-6 col-lg-4">
+        <a class="text-danger bold pointer remove-site"
+           data-site-id="<%= page.site_id %>">
+          <i class="fa fa-trash"></i>
+          <%= link_to "Remove", site_page_path(page.site_id, page.id),
+            data: { confirm: "Are you sure?" },
+            :class => 'text-danger',
+            method: :delete%>
+        </a>
+      </span><br>
+    <% end %>
+
+    <%= render 'pages/new-page-button' if @site.present? %><br><br>
   </div>
 </div>
-<%= render 'pages/new-page-button' %>
